@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="ProiectPDM.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:ProiectPDM.Views"
+    Shell.FlyoutBehavior="Flyout"
+    Title="ProiectPDM">
+   
+    <FlyoutItem Title="Today's Activity" Icon="icon_today.png">
+        <ShellContent ContentTemplate="{DataTemplate views:FirstPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="User Profile" Icon="user.png">
+        <ShellContent ContentTemplate="{DataTemplate views:UserProfile}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Meal History" Icon="icon_meals.png">
+        <ShellContent ContentTemplate="{DataTemplate views:UserMeals}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Add Exercise" Icon="ic_weights.png">
+        <ShellContent ContentTemplate="{DataTemplate views:AddExercises}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Exercise History" Icon="ic_exercise_history.png">
+        <ShellContent ContentTemplate="{DataTemplate views:ExerciseHistory}" />
+    </FlyoutItem>
+
+
+</Shell>

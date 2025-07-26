@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProiectPDM.Views.FirstPage"
+             Title="Today's Activity">
+
+    <Grid RowDefinitions="*,*,Auto">
+        <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto" Grid.Row="0">
+            <Label Text="Exercises" FontSize="15" Margin="10" VerticalOptions="Start" Grid.Row="0"/>
+            <Label Text="Today's Progress" FontSize="15" Margin="10" Grid.Row="1" HorizontalOptions="Center"/>
+            <Label x:Name="progressLabel" FontSize="12" Margin="10" Grid.Row="2" HorizontalOptions="Center"/>
+
+            <ProgressBar x:Name="exerciseProgress" 
+                         HeightRequest="20" Margin="20"
+                         ProgressColor="MediumPurple" BackgroundColor="White"
+                         Grid.Row="3"/>
+
+            <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Start" Grid.Row="4" Spacing="10">
+                <Image Source="glass_of_water.png" WidthRequest="30" HeightRequest="30"/>
+                <StackLayout Orientation="Horizontal" Spacing="30">
+                    <Button Text="+" FontSize="Medium" BackgroundColor="MediumPurple" TextColor="White" Clicked="IncrementWaterIntake" WidthRequest="40" HeightRequest="40"/>
+                    <Entry x:Name="waterIntakeEntry" Text="{Binding WaterIntake}" WidthRequest="40" Keyboard="Numeric" MaxLength="3" HorizontalTextAlignment="Center"/>
+                    <Button Text="-" FontSize="Large" BackgroundColor="MediumPurple" TextColor="White" Clicked="DecrementWaterIntake" WidthRequest="40" HeightRequest="40" VerticalOptions="Center"/>
+                </StackLayout>
+                <Button Text="Save" Clicked="UpdateWaterIntakeInDatabase" WidthRequest="60" HeightRequest="40" BackgroundColor="MediumPurple"/>
+            </StackLayout>
+         </Grid>
+
+        <Label Text="Meals" FontSize="15" Margin="10" VerticalOptions="Start" Grid.Row="1"/>
+
+        <CollectionView x:Name="TodayMealsList" Grid.Row="1" Margin="0,30,0,0">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame CornerRadius="10" Margin="5" Padding="10" HasShadow="True">
+                        <StackLayout>
+                            <Label Text="{Binding Date, StringFormat='{0:D}'}" FontAttributes="Bold" />
+                            <Label Text="{Binding MealType}" FontAttributes="Italic" />
+                            <Label Text="{Binding IngredientsString}" />
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Label x:Name="NoMealsLabel" Text="No meals recorded for today" Grid.Row="1" IsVisible="{Binding IsMealsListEmpty}" Margin="10,0,0,0" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Italic"/>
+
+        <Grid RowDefinitions="*,*,Auto" BackgroundColor="Transparent"  Grid.Row="1">
+            <Button Text="+"
+                FontSize="24"
+                WidthRequest="60"
+                HeightRequest="60"
+                CornerRadius="30"
+                BackgroundColor="MediumPurple"
+                TextColor="White"
+                Grid.Row="2"
+                HorizontalOptions="End"
+                VerticalOptions="End"
+                Margin="0,0,0,10"
+                Clicked="OnAddMealClicked"/>
+        </Grid>
+    </Grid>
+</ContentPage>
