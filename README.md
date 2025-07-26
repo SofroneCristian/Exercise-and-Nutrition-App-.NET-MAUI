@@ -1,1 +1,0 @@
-# Exercise-and-Nutrition-App-.NET-MAUI
